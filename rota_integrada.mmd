@@ -1,0 +1,91 @@
+graph TD
+    %% Estilização
+    classDef stage fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1;
+    classDef machine fill:#ffffff,stroke:#455a64,stroke-width:1px,color:#000;
+    classDef flow stroke:#ff6f00,stroke-width:2px,stroke-dasharray: 5 5;
+
+    %% --- ETAPA 1: COMINUIÇÃO ---
+    subgraph S1 ["Etapa 1: Cominuição (Preparação)"]
+        direction TB
+        C1["Britador Blake<br/>(Primária)"]
+        C2["Britador Cônico<br/>(Secundária)"]
+        C3["Britador Bradford<br/>(Carvão)"]
+        C4["Moinho de Gaiolas<br/>(Finos)"]
+        C5["Moinho de Bolas<br/>(Moagem Fina)"]
+    end
+
+    %% --- ETAPA 2: SINTERIZAÇÃO ---
+    subgraph S2 ["Etapa 2: Sinterização"]
+        direction TB
+        Si1["Grelha de Sinterização<br/>(Esteira Contínua)"]
+        Si2["Exaustores Principais"]
+    end
+
+    %% --- ETAPA 3: COQUEIFICAÇÃO ---
+    subgraph S3 ["Etapa 3: Coqueificação"]
+        direction TB
+        Co1["Correia Transp.<br/>Bunker"]
+        Co2["Silos de<br/>Carregamento"]
+        Co3["Máquinas da Bateria<br/>(Guia/Niveladora)"]
+        Co4["Extinção<br/>(Bombas Spray)"]
+    end
+
+    %% --- ETAPA 4: ALTO FORNO ---
+    subgraph S4 ["Etapa 4: Alto Forno"]
+        direction TB
+        AF1["Sistemas de Carga<br/>do Reator"]
+        AF2["Sopradores para<br/>Ventaneiras"]
+        AF3["Fogões Cowper"]
+        AF4["Refrigeração<br/>(Staves/Bombas)"]
+        AF5["Sensores e<br/>Controladora"]
+    end
+
+    %% --- ETAPA 5: ACIARIA ---
+    subgraph S5 ["Etapa 5: Aciaria & Refino"]
+        direction TB
+        Ac1["Convertedor LD<br/>(Basculamento)"]
+        Ac2["Forno Panela<br/>(Refino Secundário)"]
+    end
+
+    %% --- ETAPA 6: LINGOTAMENTO ---
+    subgraph S6 ["Etapa 6: Lingotamento Contínuo"]
+        direction TB
+        Li1["Torre de Panela"]
+        Li2["Distribuidor e<br/>Lingoteira"]
+        Li3["Sprays Resfriamento"]
+        Li4["Máquina de Corte"]
+    end
+
+    %% --- ETAPA 7: LAMINAÇÃO ---
+    subgraph S7 ["Etapa 7: Laminação"]
+        direction TB
+        La1["Laminador Morgan<br/>(Motores Principais)"]
+    end
+
+    %% --- FLUXO DE PROCESSO (Simplificado) ---
+    
+    %% Fluxo do Minério
+    C1 --> C2
+    C2 --> C4 & C5
+    C4 & C5 --> Si1
+    Si1 --> AF1
+
+    %% Fluxo do Carvão
+    C3 --> Co1
+    Co1 --> Co2
+    Co2 --> Co3
+    Co3 --> Co4
+    Co4 --> AF1
+
+    %% Fluxo do Ferro/Aço
+    AF1 --> Ac1
+    Ac1 --> Ac2
+    Ac2 --> Li1
+    Li1 --> Li2
+    Li2 --> Li3
+    Li3 --> Li4
+    Li4 --> La1
+
+    %% Aplicação de Classes
+    class S1,S2,S3,S4,S5,S6,S7 stage;
+    class C1,C2,C3,C4,C5,Si1,Si2,Co1,Co2,Co3,Co4,AF1,AF2,AF3,AF4,AF5,Ac1,Ac2,Li1,Li2,Li3,Li4,La1 machine;

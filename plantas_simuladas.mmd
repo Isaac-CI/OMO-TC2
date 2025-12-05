@@ -1,0 +1,139 @@
+graph TD
+    %% --- ESTILOS ---
+    classDef basePlant fill:#e3f2fd,stroke:#1565c0,stroke-width:2px;
+    classDef scaledPlant fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    classDef stageNode fill:#ffffff,stroke:#000,stroke-width:1px,align:left,font-size:12px;
+    classDef customNode fill:#ffebee,stroke:#c62828,stroke-width:3px,color:#c62828,align:left;
+
+    %% =======================================================
+    %% PLANTA 1: MATRIZ (Base)
+    %% =======================================================
+    subgraph P1 ["Planta 1: Matriz (10%)"]
+        direction TB
+        P1_S1["1. Cominuição<br/>(1x Brit / 2x Moinhos)"]
+        P1_S2["2. Sinterização<br/>(1x Grelha / 2x Exaust.)"]
+        P1_S3["3. Coqueificação<br/>(2x Baterias)"]
+        P1_S4["4. Alto Forno<br/>(3x Sopradores)"]
+        P1_S5["5. Aciaria<br/>(2x LD / 2x Panela)"]
+        P1_S6["6. Lingotamento<br/>(2x Máquinas)"]
+        P1_S7["7. Laminação<br/>(1x Laminador)"]
+        P1_S1 & P1_S3 --> P1_S2 --> P1_S4 --> P1_S5 --> P1_S6 --> P1_S7
+    end
+
+    %% =======================================================
+    %% PLANTA 2: NORTE (Customizada - Sopradores)
+    %% =======================================================
+    subgraph P2 ["Planta 2: Norte (5% - Antiga)"]
+        direction TB
+        P2_S1["1. Cominuição<br/>(1x Brit / 2x Moinhos)"]
+        P2_S2["2. Sinterização<br/>(1x Grelha / 2x Exaust.)"]
+        P2_S3["3. Coqueificação<br/>(2x Baterias)"]
+        P2_S4["4. Alto Forno<br/><b>4x</b> Sopradores"]:::customNode
+        P2_S5["5. Aciaria<br/>(2x LD / 2x Panela)"]
+        P2_S6["6. Lingotamento<br/>(2x Máquinas)"]
+        P2_S7["7. Laminação<br/>(1x Laminador)"]
+        P2_S1 & P2_S3 --> P2_S2 --> P2_S4 --> P2_S5 --> P2_S6 --> P2_S7
+    end
+
+    %% =======================================================
+    %% PLANTA 3: SUL (Customizada - Aciaria)
+    %% =======================================================
+    subgraph P3 ["Planta 3: Sul (5% - Moderna)"]
+        direction TB
+        P3_S1["1. Cominuição<br/>(1x Brit / 2x Moinhos)"]
+        P3_S2["2. Sinterização<br/>(1x Grelha / 2x Exaust.)"]
+        P3_S3["3. Coqueificação<br/>(2x Baterias)"]
+        P3_S4["4. Alto Forno<br/>(3x Sopradores)"]
+        P3_S5["5. Aciaria<br/><b>3x</b> LD"]:::customNode
+        P3_S6["6. Lingotamento<br/>(2x Máquinas)"]
+        P3_S7["7. Laminação<br/>(1x Laminador)"]
+        P3_S1 & P3_S3 --> P3_S2 --> P3_S4 --> P3_S5 --> P3_S6 --> P3_S7
+    end
+
+    %% =======================================================
+    %% PLANTA 6: SUDESTE (Base)
+    %% =======================================================
+    subgraph P6 ["Planta 6: Sudeste (10%)"]
+        direction TB
+        P6_S1["1. Cominuição<br/>(1x Brit / 2x Moinhos)"]
+        P6_S2["2. Sinterização<br/>(1x Grelha / 2x Exaust.)"]
+        P6_S3["3. Coqueificação<br/>(2x Baterias)"]
+        P6_S4["4. Alto Forno<br/>(3x Sopradores)"]
+        P6_S5["5. Aciaria<br/>(2x LD / 2x Panela)"]
+        P6_S6["6. Lingotamento<br/>(2x Máquinas)"]
+        P6_S7["7. Laminação<br/>(1x Laminador)"]
+        P6_S1 & P6_S3 --> P6_S2 --> P6_S4 --> P6_S5 --> P6_S6 --> P6_S7
+    end
+
+    %% =======================================================
+    %% PLANTA 7: NOROESTE (Base - Legado)
+    %% =======================================================
+    subgraph P7 ["Planta 7: Noroeste (5%)"]
+        direction TB
+        P7_S1["1. Cominuição<br/>(1x Brit / 2x Moinhos)"]
+        P7_S2["2. Sinterização<br/>(1x Grelha / 2x Exaust.)"]
+        P7_S3["3. Coqueificação<br/>(2x Baterias)"]
+        P7_S4["4. Alto Forno<br/>(3x Sopradores)"]
+        P7_S5["5. Aciaria<br/>(2x LD / 2x Panela)"]
+        P7_S6["6. Lingotamento<br/>(2x Máquinas)"]
+        P7_S7["7. Laminação<br/>(1x Laminador)"]
+        P7_S1 & P7_S3 --> P7_S2 --> P7_S4 --> P7_S5 --> P7_S6 --> P7_S7
+    end
+
+    %% =======================================================
+    %% PLANTA 4: LESTE (Escalada + Custom Laminação)
+    %% =======================================================
+    subgraph P4 ["Planta 4: Leste (20% - Escalada)"]
+        direction TB
+        P4_S1["1. Cominuição<br/>(3x Brit / 6x Moinhos)"]
+        P4_S2["2. Sinterização<br/>(3x Grelhas / 6x Exaust.)"]
+        P4_S3["3. Coqueificação<br/>(6x Baterias)"]
+        P4_S4["4. Alto Forno<br/>(9x Sopradores / 9x Cowper)"]
+        P4_S5["5. Aciaria<br/>(6x LD / 6x Panela)"]
+        P4_S6["6. Lingotamento<br/>(6x Máquinas)"]
+        P4_S7["7. Laminação<br/><b>2x</b> Laminadores"]:::customNode
+        P4_S1 & P4_S3 --> P4_S2 --> P4_S4 --> P4_S5 --> P4_S6 --> P4_S7
+    end
+
+    %% =======================================================
+    %% PLANTA 5: OESTE (Escalada Completa)
+    %% =======================================================
+    subgraph P5 ["Planta 5: Oeste (25% - Gigante)"]
+        direction TB
+        P5_S1["1. Cominuição<br/>(3x Brit / 6x Moinhos)"]
+        P5_S2["2. Sinterização<br/>(3x Grelhas / 6x Exaust.)"]
+        P5_S3["3. Coqueificação<br/>(6x Baterias)"]
+        P5_S4["4. Alto Forno<br/>(9x Sopradores)"]
+        P5_S5["5. Aciaria<br/>(6x LD / 6x Panela)"]
+        P5_S6["6. Lingotamento<br/>(6x Máquinas)"]
+        P5_S7["7. Laminação<br/>(<b>3x</b> Laminadores)"]
+        P5_S1 & P5_S3 --> P5_S2 --> P5_S4 --> P5_S5 --> P5_S6 --> P5_S7
+    end
+
+    %% =======================================================
+    %% PLANTA 8: CENTRO (Escalada Completa)
+    %% =======================================================
+    subgraph P8 ["Planta 8: Centro (20% - Export)"]
+        direction TB
+        P8_S1["1. Cominuição<br/>(3x Brit / 6x Moinhos)"]
+        P8_S2["2. Sinterização<br/>(3x Grelhas / 6x Exaust.)"]
+        P8_S3["3. Coqueificação<br/>(6x Baterias)"]
+        P8_S4["4. Alto Forno<br/>(9x Sopradores)"]
+        P8_S5["5. Aciaria<br/>(6x LD / 6x Panela)"]
+        P8_S6["6. Lingotamento<br/>(6x Máquinas)"]
+        P8_S7["7. Laminação<br/>(<b>3x</b> Laminadores)"]
+        P8_S1 & P8_S3 --> P8_S2 --> P8_S4 --> P8_S5 --> P8_S6 --> P8_S7
+    end
+
+    %% --- APLICAÇÃO DE CLASSES ---
+    class P1,P2,P3,P6,P7 basePlant;
+    class P4,P5,P8 scaledPlant;
+    
+    class P1_S1,P1_S2,P1_S3,P1_S4,P1_S5,P1_S6,P1_S7 stageNode;
+    class P2_S1,P2_S2,P2_S3,P2_S5,P2_S6,P2_S7 stageNode;
+    class P3_S1,P3_S2,P3_S3,P3_S4,P3_S6,P3_S7 stageNode;
+    class P4_S1,P4_S2,P4_S3,P4_S4,P4_S5,P4_S6 stageNode;
+    class P5_S1,P5_S2,P5_S3,P5_S4,P5_S5,P5_S6,P5_S7 stageNode;
+    class P6_S1,P6_S2,P6_S3,P6_S4,P6_S5,P6_S6,P6_S7 stageNode;
+    class P7_S1,P7_S2,P7_S3,P7_S4,P7_S5,P7_S6,P7_S7 stageNode;
+    class P8_S1,P8_S2,P8_S3,P8_S4,P8_S5,P8_S6,P8_S7 stageNode;
