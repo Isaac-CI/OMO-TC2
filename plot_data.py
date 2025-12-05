@@ -65,7 +65,7 @@ def plot_total_energy_by_plant(df, df_meta):
         ax.text(v + 0.1, i, f'{v:.2f}', va='center')
     
     plt.tight_layout()
-    plt.savefig('grafico_1_total_por_planta.png')
+    plt.savefig('images/grafico_1_total_por_planta.png')
     plt.show()
 
 def plot_hourly_profile_by_plant(df, df_meta):
@@ -92,7 +92,7 @@ def plot_hourly_profile_by_plant(df, df_meta):
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
     
     plt.tight_layout()
-    plt.savefig('grafico_2_perfil_diario.png')
+    plt.savefig('images/grafico_2_perfil_diario.png')
     plt.show()
 
 def plot_energy_heatmap(df, df_meta):
@@ -118,7 +118,7 @@ def plot_energy_heatmap(df, df_meta):
     
     plt.title('Mapa de Calor: Consumo de Energia (MWh) por Etapa', fontsize=16)
     plt.tight_layout()
-    plt.savefig('grafico_3_heatmap_etapas.png')
+    plt.savefig('images/grafico_3_heatmap_etapas.png')
     plt.show()
 
 def plot_load_duration_curve(df, df_meta):
@@ -153,13 +153,13 @@ def plot_load_duration_curve(df, df_meta):
                  arrowprops=dict(facecolor='black', shrink=0.05))
 
     plt.tight_layout()
-    plt.savefig('grafico_4_curva_duracao.png')
+    plt.savefig('images/grafico_4_curva_duracao.png')
     plt.show()
 
 def main():
     # Nome do arquivo gerado pelo script de simulação
     # Certifique-se de que este nome bate com o gerado no 'run_rota1_detailed_simulation.py'
-    csv_filename = "resultado_complexo_siderurgico.csv" 
+    csv_filename = "data/resultado_complexo_siderurgico.csv" 
     
     df, df_meta = load_and_structure_data(csv_filename)
     

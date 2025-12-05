@@ -41,7 +41,7 @@ try:
     )
 
     # Salvar resultados
-    nome_arquivo = "resultado_complexo_siderurgico.csv"
+    nome_arquivo = "data/resultado_complexo_siderurgico.csv"
     df_resultado.to_csv(nome_arquivo, index_label="Data_Hora")
     print(f"\n[SUCESSO] Dados salvos em '{nome_arquivo}'")
 
