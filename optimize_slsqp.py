@@ -109,3 +109,7 @@ df_reconciled = pd.DataFrame(reconciled_rows, columns=colunas_dados)
 print("\nExemplo de Dados Reconciliados (Planta 1 - Sinterização):")
 cols_demo = [c for c in colunas_dados if 'Planta 1' in c and 'Sinterizacao' in c]
 print(df_reconciled[cols_demo].head())
+
+#Salvar
+df_reconciled.to_csv("data/resultado_complexo_siderurgico_reconciliado.csv")
+print("Arquivo salvo (data/resultado_complexo_siderurgico_reconciliado.csv)")
