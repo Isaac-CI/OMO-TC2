@@ -1,6 +1,6 @@
 """
-Arquivo de configuração para o Complexo Siderúrgico (Expandido).
-Define perfis de operação e a estrutura detalhada de equipamentos para 8 plantas distintas.
+Arquivo de configuração para o Complexo Siderúrgico (Apenas Planta 5).
+Define perfis de operação e a estrutura detalhada de equipamentos para a Planta 5 assumindo toda a produção.
 """
 
 # ==============================================================================
@@ -70,7 +70,11 @@ def get_base_structure(efficiency_factor=1.0):
         },
         # --- ETAPA 7: LAMINAÇÃO ---
         'Laminacao': {
-            'Laminador Morgan':            {'quantity': 1, 'base_kWh_per_tonne': 1100.0 * ef, 'schedule': profile_cont}
+            'Laminador Morgan #1 motor':            {'quantity': 3, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont},
+            'Laminador Morgan #2 motor':            {'quantity': 3, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont},
+            'Laminador Morgan #3 motor':            {'quantity': 3, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont},
+            'Laminador Morgan #4 motor':            {'quantity': 3, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont},
+            'Laminador Morgan #5 motor':            {'quantity': 3, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont}
         }
     }
 
@@ -123,7 +127,11 @@ def get_scaled_structure(efficiency_factor=1.0):
         },
         # --- ETAPA 7: LAMINAÇÃO ---
         'Laminacao': {
-            'Laminador Morgan':            {'quantity': 3, 'base_kWh_per_tonne': 1100.0 * ef, 'schedule': profile_cont}
+            'Laminador Morgan #1 motor':            {'quantity': 9, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont},
+            'Laminador Morgan #2 motor':            {'quantity': 9, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont},
+            'Laminador Morgan #3 motor':            {'quantity': 9, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont},
+            'Laminador Morgan #4 motor':            {'quantity': 9, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont},
+            'Laminador Morgan #5 motor':            {'quantity': 9, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont}
         }
     }
 
@@ -131,11 +139,18 @@ def get_scaled_structure(efficiency_factor=1.0):
 # 3. DEFINIÇÃO DAS PLANTAS (CUSTOMIZAÇÕES)
 # ==============================================================================
 
-# --- PLANTAS EXISTENTES (Modificadas para escala) ---
+# Planta 1: Referência (Eficiência Padrão)
 planta_matriz = get_base_structure(efficiency_factor=1.0)
+
+# Planta 2: Norte (Planta Antiga - 10% menos eficiente no consumo)
 planta_norte = get_base_structure(efficiency_factor=1.10) # 10% menos eficiente
 planta_norte['Alto_Forno']['Sopradores Ventaneiras']['quantity'] = 4
+
+# Planta 3: Sul (Planta Moderna/Otimizada - 5% mais eficiente)
 planta_sul = get_base_structure(efficiency_factor=0.95) # 5% mais eficiente
+planta_sul['Aciaria']['Convertedor LD']['quantity'] = 3
+
+# Planta 4: Leste (Focada em Acabamento)
 planta_leste = get_scaled_structure(efficiency_factor=1.0) # Planta Escalada (Grande porte)
 
 # --- NOVAS PLANTAS ADICIONADAS ---
@@ -149,44 +164,44 @@ planta_centro = get_scaled_structure(efficiency_factor=1.05) # Planta Grande e l
 # ==============================================================================
 
 COMPLEXO_SIDERURGICO_CONFIG = {
-    # 1. Planta Base
+    # 1. Planta Base - DESATIVADA (0%)
     'Planta 1 (Matriz)': {
-        'production_share': 0.10,
+        'production_share': 0.00,
         'stages': planta_matriz
     },
-    # 2. Planta Baixa Eficiência (Antiga)
+    # 2. Planta Baixa Eficiência - DESATIVADA (0%)
     'Planta 2 (Norte - Antiga)': {
-        'production_share': 0.05,
+        'production_share': 0.00,
         'stages': planta_norte
     },
-    # 3. Planta Alta Eficiência (Pequena)
+    # 3. Planta Alta Eficiência - DESATIVADA (0%)
     'Planta 3 (Sul - Moderna)': {
-        'production_share': 0.05,
+        'production_share': 0.00,
         'stages': planta_sul
     },
-    # 4. Planta Escalada (Grande)
+    # 4. Planta Escalada - DESATIVADA (0%)
     'Planta 4 (Leste - Escalada)': {
-        'production_share': 0.20,
+        'production_share': 0.00,
         'stages': planta_leste
     },
-    # 5. Planta Gigante Moderna (Nova)
+    # 5. Planta Gigante Moderna - ATIVA (100%)
     'Planta 5 (Oeste - Gigante)': {
-        'production_share': 0.25,
+        'production_share': 1.00,
         'stages': planta_oeste
     },
-    # 6. Planta Padrão Auxiliar
+    # 6. Planta Padrão Auxiliar - DESATIVADA (0%)
     'Planta 6 (Sudeste)': {
-        'production_share': 0.10,
+        'production_share': 0.00,
         'stages': planta_sudeste
     },
-    # 7. Planta Legada (Muito Antiga)
+    # 7. Planta Legada - DESATIVADA (0%)
     'Planta 7 (Noroeste - Legado)': {
-        'production_share': 0.05,
+        'production_share': 0.00,
         'stages': planta_noroeste
     },
-    # 8. Planta Exportação (Grande)
+    # 8. Planta Exportação - DESATIVADA (0%)
     'Planta 8 (Centro - Export)': {
-        'production_share': 0.20,
+        'production_share': 0.00,
         'stages': planta_centro
     }
 }

@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import random
-from scipy.stats import skewnorm
 
 def simulate_multi_line_consumption(plant_config: dict, 
                                     annual_tonnage: float, 
@@ -9,30 +8,24 @@ def simulate_multi_line_consumption(plant_config: dict,
                                     overall_variability: float = 0.10, 
                                     inter_unit_variability: float = 0.05,
                                     temporal_variability: float = 0.15,
-                                    stage_noise_skew: float = -5.0, 
-                                    stage_noise_scale: float = 0.05) -> pd.DataFrame:
+                                    stage_noise_scale: float = 0.05,
+                                    plant_noise_scale: float = 0.02) -> pd.DataFrame:
     """
     Gera série temporal horária para Múltiplas Linhas de Produção independentes.
+    Calcula também o TOTAL GLOBAL da planta com ruído independente.
 
     Args:
-        plant_config (dict): Configuração hierárquica:
-                             {
-                                'Nome Linha': {
-                                    'production_share': 0.X (Opcional, float 0.0-1.0),
-                                    'stages': {
-                                        'Nome Etapa': {
-                                            'Nome Maquina': {props...},
-                                            ...
-                                        }
-                                    }
-                                },
-                                ...
-                             }
+        plant_config (dict): Configuração hierárquica da planta.
         annual_tonnage (float): Produção total da planta inteira.
-        ... (outros parâmetros de variabilidade iguais ao anterior)
+        year (int): Ano da simulação.
+        overall_variability (float): Variabilidade do tipo de equipamento.
+        inter_unit_variability (float): Variabilidade entre unidades iguais.
+        temporal_variability (float): Ruído horário das máquinas.
+        stage_noise_scale (float): Desvio padrão do ruído normal da etapa.
+        plant_noise_scale (float): Desvio padrão do ruído normal aplicado ao total da planta.
 
     Returns:
-        pd.DataFrame: DataFrame com colunas nomeadas como 'Linha_Etapa_Maquina #ID'.
+        pd.DataFrame: DataFrame com colunas de máquinas, totais de etapa e TOTAL_PLANTA_GLOBAL.
     """
     
     # 1. Configuração de Tempo
@@ -47,7 +40,10 @@ def simulate_multi_line_consumption(plant_config: dict,
     
     data_dict = {}
     
-    print(f"--- Iniciando Simulação Multi-Linhas ---")
+    # Acumulador para a soma pura de todas as máquinas da planta
+    plant_aggregated_series = np.zeros(hours_in_simulation)
+    
+    print(f"--- Iniciando Simulação Multi-Linhas (Distruibuição Normal) ---")
     print(f"Produção Global: {annual_tonnage} t/ano ({global_hourly_rate:.2f} t/h)")
 
     # 2. Calcular Distribuição de Carga entre Linhas
@@ -59,9 +55,7 @@ def simulate_multi_line_consumption(plant_config: dict,
     
     if sum_defined > 1.0:
         print("AVISO: Soma das proporções definidas > 100%. Normalizando...")
-        # Lógica simples de normalização poderia ser adicionada aqui, mas vamos alertar.
     
-    # Define o share padrão para quem não tem 'production_share' definido
     default_share = (1.0 - sum_defined) / count_undefined if count_undefined > 0 else 0.0
 
     # ==========================================================================
@@ -77,12 +71,12 @@ def simulate_multi_line_consumption(plant_config: dict,
         if line_hourly_rate <= 0:
             continue
 
-        # LOOP DAS ETAPAS (Dentro da Linha)
+        # LOOP DAS ETAPAS
         for stage_name, equipment_dict in stages_config.items():
             
             stage_machines_series = []
             
-            # LOOP DOS EQUIPAMENTOS (Dentro da Etapa)
+            # LOOP DOS EQUIPAMENTOS
             for equip_name, props in equipment_dict.items():
                 quantity = props.get('quantity', 0)
                 base_spec = props.get('base_kWh_per_tonne', 0)
@@ -94,8 +88,7 @@ def simulate_multi_line_consumption(plant_config: dict,
                 # Sazonalidade
                 seasonality_vector = np.array([schedule[t.hour] for t in time_index])
 
-                # Taxa de produção por UNIDADE desta máquina
-                # (A carga da linha é dividida entre as máquinas paralelas)
+                # Taxa de produção por UNIDADE
                 unit_production_rate = line_hourly_rate / quantity
 
                 # Variabilidade Geral do Tipo
@@ -106,7 +99,6 @@ def simulate_multi_line_consumption(plant_config: dict,
                 unit_base_load_hourly = type_simulated_spec * unit_production_rate
 
                 for i in range(1, quantity + 1):
-                    # Nomenclatura hierárquica: Linha -> Etapa -> Equipamento
                     col_name = f"{line_name}|{stage_name}|{equip_name} #{i}"
                     
                     # Variabilidade Inter-Unidade
@@ -120,29 +112,49 @@ def simulate_multi_line_consumption(plant_config: dict,
                     hourly_series = this_unit_base * seasonality_vector * (1 + noise)
                     hourly_series = np.maximum(hourly_series, 0)
                     
-                    # Mascara de desligamento
+                    # Máscara de desligamento
                     mask_off = seasonality_vector == 0
                     hourly_series[mask_off] = 0
                     
+                    # Armazenar dados
                     data_dict[col_name] = hourly_series
                     stage_machines_series.append(hourly_series)
+                    
+                    # Acumular no total global da planta
+                    plant_aggregated_series += hourly_series
 
             # ---------------------------------------------------------
-            # Cálculo da Etapa Agregada (Para esta Linha Específica)
+            # Cálculo da Etapa Agregada
             # ---------------------------------------------------------
             if stage_machines_series:
                 raw_stage_sum = np.sum(stage_machines_series, axis=0)
                 
-                # Ruído Enviesado da Etapa
-                skewed_noise = skewnorm.rvs(a=stage_noise_skew, loc=0, scale=stage_noise_scale, size=hours_in_simulation)
+                # Ruído Normal da Etapa (Simétrico)
+                # Centrado em 0, com desvio padrão definido por stage_noise_scale
+                normal_noise = np.random.normal(loc=0, scale=stage_noise_scale, size=hours_in_simulation)
                 
-                stage_final_series = raw_stage_sum * (1 + skewed_noise)
+                stage_final_series = raw_stage_sum * (1 + normal_noise)
                 stage_final_series = np.maximum(stage_final_series, 0)
                 stage_final_series[raw_stage_sum == 0] = 0
                 
-                # Nome da coluna de total da etapa na linha
                 stage_col_name = f"{line_name}|{stage_name}|TOTAL"
                 data_dict[stage_col_name] = stage_final_series
+
+    # ==========================================================================
+    # CÁLCULO DO TOTAL GLOBAL DA PLANTA
+    # ==========================================================================
+    
+    # Gera ruído normal (Gaussiano)
+    plant_noise = np.random.normal(loc=0, scale=plant_noise_scale, size=hours_in_simulation)
+    
+    # Aplica o ruído: Total = Soma_Equipamentos * (1 + Ruído)
+    plant_final_total = plant_aggregated_series * (1 + plant_noise)
+    plant_final_total = np.maximum(plant_final_total, 0) # Garante não-negativo
+    
+    # Onde a soma dos equipamentos é 0 (planta parada), o total deve ser 0
+    plant_final_total[plant_aggregated_series == 0] = 0
+    
+    data_dict["TOTAL_PLANTA_GLOBAL"] = plant_final_total
 
     # Cria DataFrame final
     df = pd.DataFrame(data_dict, index=time_index)
