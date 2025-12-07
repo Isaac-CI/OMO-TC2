@@ -18,8 +18,9 @@ def get_sigma(z_values):
 
 # Função Objetivo (Minimizar o erro de medição)
 def objective_function(x, z_medido, sigmas, l1, l2):
-    f_wls = np.sum(((x - z_medido) ** 2) / (sigmas ** 2))
-    f_l1 = np.sum(np.abs(x - z_medido))
+    eps = 1e-15
+    f_wls = np.sum(((x - z_medido) ** 2) / (((x - z_medido)*sigmas) ** 2 + eps) + 10*(x - z_medido))
+    f_l1 = np.sum(np.abs(x - z_medido) + 10*(x - z_medido))
     return (l1 * f_wls) + (l2 * f_l1)
 
 # 2. Identificação Automática da Topologia
@@ -82,7 +83,7 @@ reconciled_rows = []
 # Processando linha a linha (Exemplo com as 5 primeiras para rapidez)
 for i in range(min(5, len(df))):
     z_medido = df.iloc[i][colunas_dados].values.astype(float)
-    sigmas = get_sigma(z_medido)
+    sigmas = np.full(len(z_medido), 0.05, dtype=np.float64) ####### colocar sigma mais detalhado 2% para etapa, 1% planta, 5% equipamento
     
     # Restrições para o SciPy
     cons = {'type': 'eq', 'fun': constraint_balance, 'args': (map_indices_numeric,)}
@@ -94,7 +95,7 @@ for i in range(min(5, len(df))):
         args=(z_medido, sigmas, LAMBDA_1, LAMBDA_2),
         method='SLSQP',
         bounds=bounds,
-        constraints=cons,
+        #constraints=cons, # Transformei restrição em penalidades
         options={'ftol': 1e-4, 'disp': False}
     )
     
@@ -113,3 +114,9 @@ print(df_reconciled[cols_demo].head())
 #Salvar
 df_reconciled.to_csv("data/resultado_complexo_siderurgico_reconciliado.csv")
 print("Arquivo salvo (data/resultado_complexo_siderurgico_reconciliado.csv)")
+
+#f_wls = np.sum(((res.x - z_medido) ** 2) / (((res.x - z_medido)*sigmas) ** 2 + eps))
+#f_l1 = np.sum(np.abs(res.x - z_medido))
+
+# Plotar fronteira pareto, analisar efeito dos lambdas nas soluções
+# Analisar o quanto a inclusão da norma L1 mitigou os efeitos do sigma
