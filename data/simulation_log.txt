@@ -1,0 +1,259 @@
+--- Iniciando Simulação do Complexo Siderúrgico (2025) ---
+Capacidade Total: 15.3 Mt/ano
+Log sendo salvo em: C:\Users\isaac\mestrado\OMO\OMO-TC2\data\simulation_log.txt
+--- Iniciando Simulação Multi-Linhas (Distruibuição Normal) ---
+Produção Global: 15300000 t/ano (1746.58 t/h)
+Simulando 'Planta 1 (Matriz)': 0.0% da carga (0.00 t/h)
+Simulando 'Planta 2 (Norte - Antiga)': 0.0% da carga (0.00 t/h)
+Simulando 'Planta 3 (Sul - Moderna)': 0.0% da carga (0.00 t/h)
+Simulando 'Planta 4 (Leste - Escalada)': 0.0% da carga (0.00 t/h)
+Simulando 'Planta 5 (Oeste - Gigante)': 100.0% da carga (1746.58 t/h)
+Simulando 'Planta 6 (Sudeste)': 0.0% da carga (0.00 t/h)
+Simulando 'Planta 7 (Noroeste - Legado)': 0.0% da carga (0.00 t/h)
+Simulando 'Planta 8 (Centro - Export)': 0.0% da carga (0.00 t/h)
+
+[SUCESSO] Dados salvos em 'data/resultado_complexo_siderurgico.csv'
+
+--- Relatório Executivo (168 horas simuladas) ---
+Produção Estimada no Período: 293424.66 toneladas
+
+=============================================================================================================================
+PLANTA                    | PROD. (t)  | SOMA ETAPAS    | TOTAL PLANTA   | DIF (%)  | SPEC (kWh/t)
+=============================================================================================================================
+Planta 1 (Matriz)         | N/A        | Sem Dados      | ...
+Planta 2 (Norte - Antiga) | N/A        | Sem Dados      | ...
+Planta 3 (Sul - Moderna)  | N/A        | Sem Dados      | ...
+Planta 4 (Leste - Escalada) | N/A        | Sem Dados      | ...
+plantaPlanta 5 (Oeste - Gigante), share1.0, prod293424.65753424657
+Planta 5 (Oeste - Gigante) | 293425     | 1146805.52     | 1098517.60     |   -4.21% | 3743.78     
+Planta 6 (Sudeste)        | N/A        | Sem Dados      | ...
+Planta 7 (Noroeste - Legado) | N/A        | Sem Dados      | ...
+Planta 8 (Centro - Export) | N/A        | Sem Dados      | ...
+-----------------------------------------------------------------------------------------------------------------------------
+TOTAL COMPLEXO            | 293425     | 1146805.52     | 1123888.62     |   -2.00% | 3830.25     
+=============================================================================================================================
+* SOMA ETAPAS: Soma dos subtotais de cada etapa (inclui ruídos locais).
+* TOTAL PLANTA: Soma física dos equipamentos individuais.
+
+================================================================================
+DETALHAMENTO TÉCNICO: ETAPAS vs EQUIPAMENTOS
+================================================================================
+
+>>> Planta 1 (Matriz)
+--------------------------------------------------------------------------------
+
+>>> Planta 2 (Norte - Antiga)
+--------------------------------------------------------------------------------
+
+>>> Planta 3 (Sul - Moderna)
+--------------------------------------------------------------------------------
+
+>>> Planta 4 (Leste - Escalada)
+--------------------------------------------------------------------------------
+
+>>> Planta 5 (Oeste - Gigante)
+--------------------------------------------------------------------------------
+  [Aciaria]
+    Estimativa Etapa (Simulada):  163015.60 MWh
+    Soma Equipamentos (Física):   168277.04 MWh
+    Diferença (Ruído Normal):      -5261.44 MWh (-3.13%)
+    ... Detalhe Equipamentos:
+        - Convertedor LD #1                  :  4245.50 MWh
+        - Convertedor LD #2                  :  4457.46 MWh
+        - Convertedor LD #3                  :  4331.17 MWh
+        - Convertedor LD #4                  :  4686.37 MWh
+        - Convertedor LD #5                  :  4108.45 MWh
+        - Convertedor LD #6                  :  3834.35 MWh
+        - Forno Panela #1                    : 32004.77 MWh
+        - Forno Panela #2                    : 19277.31 MWh
+        - Forno Panela #3                    : 22135.21 MWh
+        - Forno Panela #4                    : 26298.84 MWh
+        - Forno Panela #5                    : 22002.95 MWh
+        - Forno Panela #6                    : 20894.65 MWh
+
+  [Alto_Forno]
+    Estimativa Etapa (Simulada):  294207.13 MWh
+    Soma Equipamentos (Física):   271772.27 MWh
+    Diferença (Ruído Normal):      22434.86 MWh (+8.26%)
+    ... Detalhe Equipamentos:
+        - Sistemas de Carga #1               :  2164.58 MWh
+        - Sistemas de Carga #2               :  2513.72 MWh
+        - Sistemas de Carga #3               :  3334.17 MWh
+        - Sopradores Ventaneiras #1          : 30045.77 MWh
+        - Sopradores Ventaneiras #2          : 24570.79 MWh
+        - Sopradores Ventaneiras #3          : 28004.37 MWh
+        - Sopradores Ventaneiras #4          : 24377.01 MWh
+        - Sopradores Ventaneiras #5          : 24468.04 MWh
+        - Sopradores Ventaneiras #6          : 22423.37 MWh
+        - Sopradores Ventaneiras #7          : 25763.58 MWh
+        - Sopradores Ventaneiras #8          : 24031.21 MWh
+        - Sopradores Ventaneiras #9          : 26062.48 MWh
+        - Fogoes Cowper #1                   :   717.35 MWh
+        - Fogoes Cowper #2                   :   928.02 MWh
+        - Fogoes Cowper #3                   :   815.61 MWh
+        - Fogoes Cowper #4                   :   713.65 MWh
+        - Fogoes Cowper #5                   :   721.12 MWh
+        - Fogoes Cowper #6                   :   680.75 MWh
+        - Fogoes Cowper #7                   :   804.47 MWh
+        - Fogoes Cowper #8                   :   640.72 MWh
+        - Fogoes Cowper #9                   :   808.87 MWh
+        - Refrigeracao (Staves) #1           :  4986.09 MWh
+        - Refrigeracao (Staves) #2           :  4317.29 MWh
+        - Refrigeracao (Staves) #3           :  4774.80 MWh
+        - Refrigeracao (Staves) #4           :  3305.35 MWh
+        - Refrigeracao (Staves) #5           :  3619.81 MWh
+        - Refrigeracao (Staves) #6           :  4533.11 MWh
+        - Sensores e Controladora #1         :   672.30 MWh
+        - Sensores e Controladora #2         :   541.01 MWh
+        - Sensores e Controladora #3         :   432.87 MWh
+
+  [Cominuicao]
+    Estimativa Etapa (Simulada):  122617.76 MWh
+    Soma Equipamentos (Física):   126922.20 MWh
+    Diferença (Ruído Normal):      -4304.44 MWh (-3.39%)
+    ... Detalhe Equipamentos:
+        - Britador Blake (Mandibulas) #1     :  3774.86 MWh
+        - Britador Blake (Mandibulas) #2     :  3239.61 MWh
+        - Britador Blake (Mandibulas) #3     :  3492.24 MWh
+        - Britador Conico #1                 :  3335.93 MWh
+        - Britador Conico #2                 :  3116.78 MWh
+        - Britador Conico #3                 :  3429.44 MWh
+        - Britador Bradford (Carvao) #1      :  3327.43 MWh
+        - Britador Bradford (Carvao) #2      :  3205.82 MWh
+        - Britador Bradford (Carvao) #3      :  3291.42 MWh
+        - Moinho de Gaiolas #1               :  4615.84 MWh
+        - Moinho de Gaiolas #2               :  6167.15 MWh
+        - Moinho de Gaiolas #3               :  6061.22 MWh
+        - Moinho de Bolas #1                 : 12866.74 MWh
+        - Moinho de Bolas #2                 : 12562.67 MWh
+        - Moinho de Bolas #3                 : 15641.52 MWh
+        - Moinho de Bolas #4                 : 11878.58 MWh
+        - Moinho de Bolas #5                 : 11860.80 MWh
+        - Moinho de Bolas #6                 : 15054.15 MWh
+
+  [Coqueificacao]
+    Estimativa Etapa (Simulada):   48483.39 MWh
+    Soma Equipamentos (Física):    45826.34 MWh
+    Diferença (Ruído Normal):       2657.05 MWh (+5.80%)
+    ... Detalhe Equipamentos:
+        - Correia Transp. Bunker #1          :  1723.85 MWh
+        - Correia Transp. Bunker #2          :  2063.78 MWh
+        - Correia Transp. Bunker #3          :  2311.71 MWh
+        - Maquinas da Bateria #1             :  3264.43 MWh
+        - Maquinas da Bateria #2             :  3199.80 MWh
+        - Maquinas da Bateria #3             :  3085.61 MWh
+        - Maquinas da Bateria #4             :  3412.27 MWh
+        - Maquinas da Bateria #5             :  3538.36 MWh
+        - Maquinas da Bateria #6             :  2943.84 MWh
+        - Silos de Carregamento #1           :  1718.71 MWh
+        - Silos de Carregamento #2           :  1519.77 MWh
+        - Silos de Carregamento #3           :  1542.57 MWh
+        - Extincao (Bombas Spray) #1         :  1925.91 MWh
+        - Extincao (Bombas Spray) #2         :  2881.94 MWh
+        - Extincao (Bombas Spray) #3         :  2765.42 MWh
+        - Extincao (Bombas Spray) #4         :  2498.23 MWh
+        - Extincao (Bombas Spray) #5         :  2518.26 MWh
+        - Extincao (Bombas Spray) #6         :  2911.90 MWh
+
+  [Laminacao]
+    Estimativa Etapa (Simulada):  143934.74 MWh
+    Soma Equipamentos (Física):   139174.91 MWh
+    Diferença (Ruído Normal):       4759.83 MWh (+3.42%)
+    ... Detalhe Equipamentos:
+        - Laminador Morgan #1 motor #1       :  2781.28 MWh
+        - Laminador Morgan #1 motor #2       :  2659.80 MWh
+        - Laminador Morgan #1 motor #3       :  3049.83 MWh
+        - Laminador Morgan #1 motor #4       :  2469.10 MWh
+        - Laminador Morgan #1 motor #5       :  2982.83 MWh
+        - Laminador Morgan #1 motor #6       :  2673.79 MWh
+        - Laminador Morgan #1 motor #7       :  3040.03 MWh
+        - Laminador Morgan #1 motor #8       :  3093.33 MWh
+        - Laminador Morgan #1 motor #9       :  3025.16 MWh
+        - Laminador Morgan #2 motor #1       :  3066.21 MWh
+        - Laminador Morgan #2 motor #2       :  2535.73 MWh
+        - Laminador Morgan #2 motor #3       :  3538.92 MWh
+        - Laminador Morgan #2 motor #4       :  3843.40 MWh
+        - Laminador Morgan #2 motor #5       :  3260.59 MWh
+        - Laminador Morgan #2 motor #6       :  3108.59 MWh
+        - Laminador Morgan #2 motor #7       :  2864.56 MWh
+        - Laminador Morgan #2 motor #8       :  3956.76 MWh
+        - Laminador Morgan #2 motor #9       :  3853.64 MWh
+        - Laminador Morgan #3 motor #1       :  3109.31 MWh
+        - Laminador Morgan #3 motor #2       :  2621.96 MWh
+        - Laminador Morgan #3 motor #3       :  2494.08 MWh
+        - Laminador Morgan #3 motor #4       :  2044.85 MWh
+        - Laminador Morgan #3 motor #5       :  2176.89 MWh
+        - Laminador Morgan #3 motor #6       :  2852.04 MWh
+        - Laminador Morgan #3 motor #7       :  2164.95 MWh
+        - Laminador Morgan #3 motor #8       :  2713.37 MWh
+        - Laminador Morgan #3 motor #9       :  2234.38 MWh
+        - Laminador Morgan #4 motor #1       :  4437.38 MWh
+        - Laminador Morgan #4 motor #2       :  4917.13 MWh
+        - Laminador Morgan #4 motor #3       :  3316.13 MWh
+        - Laminador Morgan #4 motor #4       :  3473.56 MWh
+        - Laminador Morgan #4 motor #5       :  3637.53 MWh
+        - Laminador Morgan #4 motor #6       :  3886.62 MWh
+        - Laminador Morgan #4 motor #7       :  4121.51 MWh
+        - Laminador Morgan #4 motor #8       :  3549.83 MWh
+        - Laminador Morgan #4 motor #9       :  3471.47 MWh
+        - Laminador Morgan #5 motor #1       :  2864.84 MWh
+        - Laminador Morgan #5 motor #2       :  3022.17 MWh
+        - Laminador Morgan #5 motor #3       :  2468.01 MWh
+        - Laminador Morgan #5 motor #4       :  3009.53 MWh
+        - Laminador Morgan #5 motor #5       :  2545.27 MWh
+        - Laminador Morgan #5 motor #6       :  3055.64 MWh
+        - Laminador Morgan #5 motor #7       :  2969.79 MWh
+        - Laminador Morgan #5 motor #8       :  2779.21 MWh
+        - Laminador Morgan #5 motor #9       :  3433.91 MWh
+
+  [Lingotamento]
+    Estimativa Etapa (Simulada):   47943.38 MWh
+    Soma Equipamentos (Física):    48725.22 MWh
+    Diferença (Ruído Normal):       -781.84 MWh (-1.60%)
+    ... Detalhe Equipamentos:
+        - Torre de Panela #1                 :  1075.61 MWh
+        - Torre de Panela #2                 :  1320.77 MWh
+        - Torre de Panela #3                 :  1114.66 MWh
+        - Distribuidor/Lingoteira #1         :  3064.95 MWh
+        - Distribuidor/Lingoteira #2         :  2464.42 MWh
+        - Distribuidor/Lingoteira #3         :  2190.50 MWh
+        - Distribuidor/Lingoteira #4         :  2375.55 MWh
+        - Distribuidor/Lingoteira #5         :  2998.89 MWh
+        - Distribuidor/Lingoteira #6         :  2667.02 MWh
+        - Sprays Resfriamento #1             :  3516.53 MWh
+        - Sprays Resfriamento #2             :  3304.32 MWh
+        - Sprays Resfriamento #3             :  3435.61 MWh
+        - Sprays Resfriamento #4             :  3544.19 MWh
+        - Sprays Resfriamento #5             :  3530.22 MWh
+        - Sprays Resfriamento #6             :  3503.71 MWh
+        - Maquina de Corte #1                :  1371.53 MWh
+        - Maquina de Corte #2                :  1610.18 MWh
+        - Maquina de Corte #3                :  1375.31 MWh
+        - Maquina de Corte #4                :  1566.83 MWh
+        - Maquina de Corte #5                :  1366.05 MWh
+        - Maquina de Corte #6                :  1328.35 MWh
+
+  [Sinterizacao]
+    Estimativa Etapa (Simulada):  326603.52 MWh
+    Soma Equipamentos (Física):   297819.63 MWh
+    Diferença (Ruído Normal):      28783.89 MWh (+9.66%)
+    ... Detalhe Equipamentos:
+        - Grelha de Sinterizacao #1          : 15585.47 MWh
+        - Grelha de Sinterizacao #2          : 13942.55 MWh
+        - Grelha de Sinterizacao #3          : 13777.61 MWh
+        - Exaustores Principais #1           : 44533.18 MWh
+        - Exaustores Principais #2           : 38378.98 MWh
+        - Exaustores Principais #3           : 41346.55 MWh
+        - Exaustores Principais #4           : 38595.90 MWh
+        - Exaustores Principais #5           : 43256.07 MWh
+        - Exaustores Principais #6           : 48403.33 MWh
+
+
+>>> Planta 6 (Sudeste)
+--------------------------------------------------------------------------------
+
+>>> Planta 7 (Noroeste - Legado)
+--------------------------------------------------------------------------------
+
+>>> Planta 8 (Centro - Export)
+--------------------------------------------------------------------------------
