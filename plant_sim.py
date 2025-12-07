@@ -39,7 +39,7 @@ except ImportError:
 # ==============================================================================
 # PARÂMETROS DA SIMULAÇÃO
 # ==============================================================================
-TONELADAS_ANO = 15_300_000 # 15.3 Milhões de toneladas
+TONELADAS_ANO = 5_000_000 # 15.3 Milhões de toneladas
 ANO_SIMULACAO = 2025
 
 print(f"--- Iniciando Simulação do Complexo Siderúrgico ({ANO_SIMULACAO}) ---")
@@ -110,8 +110,6 @@ try:
         # Calcula produção específica desta planta
         share = COMPLEXO_SIDERURGICO_CONFIG[planta]['production_share']
         prod_planta = toneladas_periodo * share
-        
-        print(f"planta{planta}, share{share}, prod{prod_planta}")
         
         # Cálculo de diferença e específico
         spec_kwh_t = (consumo_planta_estimado_mwh * 1000) / prod_planta if prod_planta > 0 else 0

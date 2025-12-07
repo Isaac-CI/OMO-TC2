@@ -87,51 +87,51 @@ def get_scaled_structure(efficiency_factor=1.0):
     return {
         # --- ETAPA 1: COMINUIÇÃO ---
         'Cominuicao': {
-            'Britador Blake (Mandibulas)': {'quantity': 3, 'base_kWh_per_tonne': 80.0 * ef, 'schedule': profile_day_shift},
-            'Britador Conico':             {'quantity': 3, 'base_kWh_per_tonne': 90.0 * ef, 'schedule': profile_day_shift},
-            'Britador Bradford (Carvao)':  {'quantity': 3, 'base_kWh_per_tonne': 56.0 * ef, 'schedule': profile_day_shift},
-            'Moinho de Gaiolas':           {'quantity': 3, 'base_kWh_per_tonne': 112.0 * ef, 'schedule': profile_day_shift},
-            'Moinho de Bolas':             {'quantity': 6, 'base_kWh_per_tonne': 564.0 * ef, 'schedule': profile_day_shift}
+            'Britador Blake (Mandibulas)': {'quantity': 3, 'base_kWh_per_tonne': 88.0 * ef, 'schedule': profile_day_shift},
+            'Britador Conico':             {'quantity': 3, 'base_kWh_per_tonne': 99.0 * ef, 'schedule': profile_day_shift},
+            'Britador Bradford (Carvao)':  {'quantity': 3, 'base_kWh_per_tonne': 61.6 * ef, 'schedule': profile_day_shift},
+            'Moinho de Gaiolas':           {'quantity': 3, 'base_kWh_per_tonne': 123.2 * ef, 'schedule': profile_day_shift},
+            'Moinho de Bolas':             {'quantity': 6, 'base_kWh_per_tonne': 620.4 * ef, 'schedule': profile_day_shift}
         },
         # --- ETAPA 2: SINTERIZAÇÃO ---
         'Sinterizacao': {
-            'Grelha de Sinterizacao':      {'quantity': 3, 'base_kWh_per_tonne': 170.0 * ef, 'schedule': profile_cont},
-            'Exaustores Principais':       {'quantity': 6, 'base_kWh_per_tonne': 1000.0 * ef, 'schedule': profile_cont}
+            'Grelha de Sinterizacao':      {'quantity': 3, 'base_kWh_per_tonne': 187.0 * ef, 'schedule': profile_cont},
+            'Exaustores Principais':       {'quantity': 6, 'base_kWh_per_tonne': 1100.0 * ef, 'schedule': profile_cont}
         },
         # --- ETAPA 3: COQUEIFICAÇÃO ---
         'Coqueificacao': {
-            'Correia Transp. Bunker':      {'quantity': 3, 'base_kWh_per_tonne': 23.0 * ef, 'schedule': profile_cont},
-            'Maquinas da Bateria':         {'quantity': 6, 'base_kWh_per_tonne': 90.0 * ef, 'schedule': profile_cont},
-            'Silos de Carregamento':       {'quantity': 3, 'base_kWh_per_tonne': 17.0 * ef, 'schedule': profile_cont},
-            'Extincao (Bombas Spray)':     {'quantity': 6, 'base_kWh_per_tonne': 56.0 * ef, 'schedule': profile_batch}
+            'Correia Transp. Bunker':      {'quantity': 3, 'base_kWh_per_tonne': 25.3 * ef, 'schedule': profile_cont},
+            'Maquinas da Bateria':         {'quantity': 6, 'base_kWh_per_tonne': 99.0 * ef, 'schedule': profile_cont},
+            'Silos de Carregamento':       {'quantity': 3, 'base_kWh_per_tonne': 18.7 * ef, 'schedule': profile_cont},
+            'Extincao (Bombas Spray)':     {'quantity': 6, 'base_kWh_per_tonne': 61.6 * ef, 'schedule': profile_batch}
         },
         # --- ETAPA 4: ALTO FORNO ---
         'Alto_Forno': {
-            'Sistemas de Carga':           {'quantity': 3, 'base_kWh_per_tonne': 56.0 * ef, 'schedule': profile_cont},
-            'Sopradores Ventaneiras':      {'quantity': 9, 'base_kWh_per_tonne': 732.0 * ef, 'schedule': profile_cont},
-            'Fogoes Cowper':               {'quantity': 9, 'base_kWh_per_tonne': 23.0 * ef, 'schedule': profile_cont},
-            'Refrigeracao (Staves)':       {'quantity': 6, 'base_kWh_per_tonne': 169.0 * ef, 'schedule': profile_cont},
-            'Sensores e Controladora':     {'quantity': 3, 'base_kWh_per_tonne': 6.0 * ef, 'schedule': profile_cont}
+            'Sistemas de Carga':           {'quantity': 3, 'base_kWh_per_tonne': 61.6 * ef, 'schedule': profile_cont},
+            'Sopradores Ventaneiras':      {'quantity': 9, 'base_kWh_per_tonne': 805.2 * ef, 'schedule': profile_cont},
+            'Fogoes Cowper':               {'quantity': 9, 'base_kWh_per_tonne': 25.3 * ef, 'schedule': profile_cont},
+            'Refrigeracao (Staves)':       {'quantity': 6, 'base_kWh_per_tonne': 185.9 * ef, 'schedule': profile_cont},
+            'Sensores e Controladora':     {'quantity': 3, 'base_kWh_per_tonne': 6.6 * ef, 'schedule': profile_cont}
         },
         # --- ETAPA 5: ACIARIA ---
         'Aciaria': {
-            'Convertedor LD':              {'quantity': 6, 'base_kWh_per_tonne': 90.0 * ef, 'schedule': profile_batch},
-            'Forno Panela':                {'quantity': 6, 'base_kWh_per_tonne': 450.0 * ef, 'schedule': profile_batch}
+            'Convertedor LD':              {'quantity': 6, 'base_kWh_per_tonne': 99.0 * ef, 'schedule': profile_batch},
+            'Forno Panela':                {'quantity': 6, 'base_kWh_per_tonne': 495.0 * ef, 'schedule': profile_batch}
         },
         # --- ETAPA 6: LINGOTAMENTO ---
         'Lingotamento': {
-            'Torre de Panela':             {'quantity': 3, 'base_kWh_per_tonne': 11.0 * ef, 'schedule': profile_cont},
-            'Distribuidor/Lingoteira':     {'quantity': 6, 'base_kWh_per_tonne': 56.0 * ef, 'schedule': profile_cont},
-            'Sprays Resfriamento':         {'quantity': 6, 'base_kWh_per_tonne': 90.0 * ef, 'schedule': profile_cont},
-            'Maquina de Corte':            {'quantity': 6, 'base_kWh_per_tonne': 34.0 * ef, 'schedule': profile_cont}
+            'Torre de Panela':             {'quantity': 3, 'base_kWh_per_tonne': 12.1 * ef, 'schedule': profile_cont},
+            'Distribuidor/Lingoteira':     {'quantity': 6, 'base_kWh_per_tonne': 61.6 * ef, 'schedule': profile_cont},
+            'Sprays Resfriamento':         {'quantity': 6, 'base_kWh_per_tonne': 99.0 * ef, 'schedule': profile_cont},
+            'Maquina de Corte':            {'quantity': 6, 'base_kWh_per_tonne': 37.4 * ef, 'schedule': profile_cont}
         },
         # --- ETAPA 7: LAMINAÇÃO ---
         'Laminacao': {
-            'Laminador Morgan #1 motor':            {'quantity': 9, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont},
-            'Laminador Morgan #2 motor':            {'quantity': 9, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont},
-            'Laminador Morgan #3 motor':            {'quantity': 9, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont},
-            'Laminador Morgan #4 motor':            {'quantity': 9, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont},
-            'Laminador Morgan #5 motor':            {'quantity': 9, 'base_kWh_per_tonne': 110.0 * ef, 'schedule': profile_cont}
+            'Laminador Morgan #1 motor':            {'quantity': 9, 'base_kWh_per_tonne': 121.0 * ef, 'schedule': profile_cont},
+            'Laminador Morgan #2 motor':            {'quantity': 9, 'base_kWh_per_tonne': 121.0 * ef, 'schedule': profile_cont},
+            'Laminador Morgan #3 motor':            {'quantity': 9, 'base_kWh_per_tonne': 121.0 * ef, 'schedule': profile_cont},
+            'Laminador Morgan #4 motor':            {'quantity': 9, 'base_kWh_per_tonne': 121.0 * ef, 'schedule': profile_cont},
+            'Laminador Morgan #5 motor':            {'quantity': 9, 'base_kWh_per_tonne': 121.0 * ef, 'schedule': profile_cont}
         }
     }
 
