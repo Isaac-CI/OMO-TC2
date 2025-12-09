@@ -132,6 +132,7 @@ def simulate_multi_line_consumption(plant_config: dict,
                 # Ruído Normal da Etapa (Simétrico)
                 # Centrado em 0, com desvio padrão definido por stage_noise_scale
                 normal_noise = np.random.normal(loc=0, scale=stage_noise_scale, size=hours_in_simulation)
+                normal_noise = np.maximum(normal_noise, -0.95) # Satura valor negativo máximo para normal noise em -95% impedindo 0s espúrios
                 
                 stage_final_series = raw_stage_sum * (1 + normal_noise)
                 stage_final_series = np.maximum(stage_final_series, 0)
@@ -146,6 +147,7 @@ def simulate_multi_line_consumption(plant_config: dict,
     
     # Gera ruído normal (Gaussiano)
     plant_noise = np.random.normal(loc=0, scale=plant_noise_scale, size=hours_in_simulation)
+    plant_noise = np.maximum(plant_noise, -0.95) # Satura valor negativo máximo para plant noise em -95% impedindo 0s espúrios
     
     # Aplica o ruído: Total = Soma_Equipamentos * (1 + Ruído)
     plant_final_total = plant_aggregated_series * (1 + plant_noise)

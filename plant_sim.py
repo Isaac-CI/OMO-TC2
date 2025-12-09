@@ -55,11 +55,11 @@ try:
         annual_tonnage=TONELADAS_ANO,
         year=ANO_SIMULACAO,
         # Variabilidades do sistema
-        overall_variability=0.24,    
-        inter_unit_variability=0.12, 
-        temporal_variability=0.15,   
-        stage_noise_scale=0.6,      # Ruído normal (simétrico) na etapa
-        plant_noise_scale=0.24       # Variabilidade do medidor global da planta
+        overall_variability=0.075,    
+        inter_unit_variability=0.075, 
+        temporal_variability=0.075,   
+        stage_noise_scale=0.03,      # Ruído normal (simétrico) na etapa
+        plant_noise_scale=0.015       # Variabilidade do medidor global da planta
     )
 
     # Salvar resultados
