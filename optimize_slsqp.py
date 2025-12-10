@@ -16,12 +16,16 @@ def get_sigma(z_values):
   #Definindo a priori um valor fixo de 2% para cada medidor
   return np.maximum(z_values * 0.02, 1e-4) #O maximum e o valor 1e-4 é para evitar uma divisão por zero, no pior caso o valor da incerteza será minimo (0,0001)
 
+
+
 # Função Objetivo (Minimizar o erro de medição)
 def objective_function(x, z_medido, sigmas, l1, l2):
     eps = 1e-15
-    f_wls = np.sum(((x - z_medido) ** 2) / (((x - z_medido)*sigmas) ** 2 + eps) + 10*(x - z_medido))
-    f_l1 = np.sum(np.abs(x - z_medido) + 10*(x - z_medido))
-    return (l1 * f_wls) + (l2 * f_l1)
+    f_wls = np.sum((x - z_medido) ** 2) + 100*constraint_2
+    #/ (sigmas ** 2 + eps)) #)
+    #f_l1 = np.sum(np.abs(x - z_medido) + 10*(x - z_medido))
+    #return (l1 * f_wls) + (l2 * f_l1)
+    return f_wls
 
 # 2. Identificação Automática da Topologia
 # O script agrupa as colunas por Planta e Etapa para criar as equações de balanço
